@@ -8,12 +8,16 @@
 // Make me compile and pass the test!
 // Execute `starklings hint dict1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
+
+type Felt252Dict<T> = HashMap<felt252, T>;
 
 fn create_dictionary() -> Felt252Dict<u32> {
     let mut dict: Felt252Dict<u32> = Default::default();
-    //TODO
+    dict.insert('A', 1);
+    dict.insert('B', 2);
+    dict.insert("bob", 3);
+    dict
 
 }
 
@@ -23,8 +27,8 @@ fn create_dictionary() -> Felt252Dict<u32> {
 #[available_gas(200000)]
 fn test_dict() {
     let mut dict = create_dictionary();
-    assert(dict.get('A') == 1, 'First element is not 1');
-    assert(dict.get('B') == 2, 'Second element is not 2');
-    assert(dict.get('bob') == 3, 'Third element is not 3');
+    assert(dict.get('A') == Some(1), 'First element is not 1');
+    assert(dict.get('B') == Some(2), 'Second element is not 2');
+    assert(dict.get('bob') == Some(3), 'Third element is not 3');
 }
 
